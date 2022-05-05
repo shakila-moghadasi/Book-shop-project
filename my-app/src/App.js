@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Router, Routes } from 'react-router-dom';
 import './App.css';
 import Managementcommodity from './components/admin/commodity/manegementcommodity/Managementcommodity';
 import Adminheader from './components/admin/general/Adminheader';
@@ -17,7 +17,7 @@ function App() {
     <div>
       <Routes>
         <Route path='/' element={<Userheader/>}>
-          <Route path='/'  element={<Firstpage/>}/>
+          <Route index element={<Firstpage/>}/>
           <Route path='/firstpage'  element={<Firstpage/>}/>
           <Route path='/Groupcommodity' element={<Groupcommodity/>}/>
           <Route path='/Commodity' element={<Commodity/>}/>
@@ -26,11 +26,9 @@ function App() {
           <Route path='/Resultshop' element={<Resultshop/>}/>
         </Route>
         <Route path='/Paymentgateway' element={<Paymentgateway/>}/>
-      </Routes>
-      <Routes>
-        <Route path='/' element={<Loginadmin/>}/>
-        <Route path='/Adminheader' element={<Adminheader/>}>
-          <Route path='/Managementcommodity' element={<Managementcommodity/>}/>
+        <Route path='/Loginadmin' element={<Loginadmin/>}/>
+        <Route path='/Admin' element={<Adminheader/>}>
+          <Route path='/:Managementcommodity' element={<Managementcommodity/>}/>
         </Route>
       </Routes>
     </div>
