@@ -7,30 +7,39 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Outlet } from 'react-router-dom';
 
-const pages = ['سبد خرید', 'مدیریت'];
+const pages = ['Products', 'Pricing', 'Blog'];
 
-const Userheader = () => {
+
+const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleNavMenu = () => {
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
   return (
-    <div>
-    <AppBar>
-      <Container maxWidth="xl" position="static">
+    <AppBar position="static" sx={{ backgroundColor:'#B2E7E8' }}>
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-
+        <Typography
+            noWrap
+            
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              color: 'black',
+              textDecoration: 'none',
+            }}
+          >
+            Back to site
+          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -40,7 +49,7 @@ const Userheader = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon/>
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -55,41 +64,38 @@ const Userheader = () => {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleNavMenu}
+              onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleNavMenu}>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Back to site</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, mr: 1 , color: 'black', display: 'block', backgroundColor:'#304D63' }}
               >
                 {page}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+          <Box sx={{ color: 'black' }}>
+                Store management pannel
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
-    <Outlet/>
-    </div>  
   );
 };
-export default Userheader;
-
+export default ResponsiveAppBar;
