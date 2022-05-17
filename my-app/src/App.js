@@ -1,18 +1,26 @@
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route , Routes } from 'react-router-dom';
 import './App.css';
-import Adminheader from './components/admin/Adminheader';
+import Managementcommodity from './components/admin/commodity/manegementcommodity/Managementcommodity';
 import Loginadmin from './components/admin/login/Loginadmin';
-import Userheader from './components/user/Userheader';
+import Admin from './components/layout/Admin';
+import User from './components/layout/User';
+import Withoutheader from './components/layout/withoutheader';
 
 function App() {
   return (
     <div>
-      {/* <Routes>
-        <Route path='/' element={<Userheader/>}>
+      <Routes>
+        <Route path="/" element={<User/>}>
+
         </Route>
-      </Routes> */}
-      {/* <Adminheader/> */}
-      <Loginadmin/>
+        <Route path='/' element={<Withoutheader/>}>
+          <Route path='/Loginadmin' element={<Loginadmin/>}/>
+        </Route>
+        <Route path='/' element={<Admin/>}>
+          <Route path='managecommodity' element={<Managementcommodity/>}/>
+          
+        </Route>
+      </Routes>
     </div>
   );
 }
