@@ -13,7 +13,7 @@ import { Outlet } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
-//for test
+
 const Adminheader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 

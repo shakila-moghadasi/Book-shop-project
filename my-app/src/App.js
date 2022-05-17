@@ -18,6 +18,7 @@ function App() {
         </Route>
         <Route path='/' element={<Admin/>}>
           <Route path='managecommodity' element={<Managementcommodity/>}/>
+          
         </Route>
       </Routes>
     </div>
