@@ -86,6 +86,7 @@ const Userheader = () => {
             ))}
           </Box>
 
+
           <Box sx={{ flexGrow: 0 , color: 'black'}}>
               Magic Land Store
               <IconButton sx={{ ml: 2 }}>
