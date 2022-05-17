@@ -9,11 +9,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { Outlet } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
 //for test
-const ResponsiveAppBar = () => {
+const Adminheader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -25,6 +26,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
+    <div>
     <AppBar position="static" sx={{ backgroundColor:'#B2E7E8' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -96,6 +98,8 @@ const ResponsiveAppBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <Outlet/>
+    </div>
   );
 };
-export default ResponsiveAppBar;
+export default Adminheader;

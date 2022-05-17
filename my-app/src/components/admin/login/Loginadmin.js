@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import {
   Grid,
   TextField,
-  Paper,
   Button
 } from '@mui/material';
+import { Outlet } from "react-router-dom";
 const Loginadmin = () => {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -79,6 +79,7 @@ const Loginadmin = () => {
           </Grid>
         </Grid>
       </form>
+      <Outlet/>
     </div>
   );
   return (
