@@ -10,10 +10,12 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import Tooltip from '@mui/material/Tooltip';
-import { Outlet } from 'react-router-dom';
+import { Outlet , Link } from 'react-router-dom';
+
+
 
 const pages = ['سبد خرید', 'مدیریت'];
+const routes = [ '/listshop' , '/Loginadmin']
 
 const Userheader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -68,24 +70,34 @@ const Userheader = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page , index) => (
+                <MenuItem 
+                  key={page} 
+                  onClick={handleCloseNavMenu}
+                  value={routes[index]}
+                  component={Link}
+                  to={routes[index]}
+                  >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page , index) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'black', display: 'block' }}
+                value={routes[index]}
+                component={Link}
+                to={routes[index]}
               >
                 {page}
               </Button>
             ))}
           </Box>
+
 
           <Box sx={{ flexGrow: 0 , color: 'black'}}>
               Magic Land Store

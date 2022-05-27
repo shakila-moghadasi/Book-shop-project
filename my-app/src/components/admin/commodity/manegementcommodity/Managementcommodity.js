@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -48,19 +50,19 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell>picture</StyledTableCell>
             <StyledTableCell align="right">name</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">genere</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row.id}>
               <StyledTableCell component="th" scope="row">
-                {row.name}
+                {row.picture}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+              <StyledTableCell align="right">{row.name}</StyledTableCell>
+              <StyledTableCell align="right">{row.genre}</StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
