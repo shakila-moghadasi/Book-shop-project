@@ -7,12 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Ordered from './ordermanagement/Ordered';
 
 
-export default function Commodityposted() {
+export default function Waiting() {
   const [data , setdata] = useState();
   useEffect(() => {
-    axios.get('http://localhost:3002/orders?orderStatus=1')
+    axios.get('http://localhost:3002/orders?orderStatus=2')
     .then((res) => {
         setdata(res.data)
     })

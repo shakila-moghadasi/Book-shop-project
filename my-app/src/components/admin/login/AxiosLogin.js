@@ -8,7 +8,7 @@ export default function AxiosLogin() {
         password:"",
     });
     useEffect(() => {
-        axios.get('http://localhost:3001/profile')
+        axios.get('http://localhost:3002/users')
         .then((res) => {
             setdata(res.data)
         })
@@ -16,10 +16,10 @@ export default function AxiosLogin() {
             alert(err.response.statusText);
         });
     },[]);
-    console.log(data);
+
   return (
     <Loginadmin
-        data = {data}
+        data = { data }
         onChange = {(newData) => {
             alert(JSON.stringify(newData));
         }}
