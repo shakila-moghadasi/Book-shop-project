@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link, Outlet } from 'react-router-dom';
 
 const pages = ['Commodity', 'PriceandInventory', 'ordered'];
-const routes = ["/managecommodity", "/manageprice" , "/posted" , "/"];
+const routes = ["/managecommodity", "/manageprice" , "/ordered" , "/"];
 
 const Adminheader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

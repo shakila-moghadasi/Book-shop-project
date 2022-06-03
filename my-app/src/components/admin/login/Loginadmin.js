@@ -14,8 +14,10 @@ function validator(values) {
     return errors;
 }
 
-
-  const Loginadmin = ({data , onchange}) => (
+  const Loginadmin = ({ data , onchange }) => 
+  {
+    console.log(data)
+    return (
     <Formik
       enableReinitialize = {true}
       initialValues={{ 
@@ -33,8 +35,8 @@ function validator(values) {
       {({
         handleSubmit,
         isSubmitting,
-        /* and other goodies */
       }) => (
+        <>
         <form onSubmit={handleSubmit}>
           <Field
             type="email"
@@ -50,9 +52,9 @@ function validator(values) {
             Submit
           </button>
         </form>
+        <Outlet/>
+        </>
       )}
-    <Outlet/>
-    </Formik>
-);
+    </Formik>)}
 
 export default Loginadmin;
