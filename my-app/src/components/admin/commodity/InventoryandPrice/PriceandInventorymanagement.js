@@ -1,57 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
+import Paginaion from "./Pagination";
+import Button from '@mui/material/Button';
 
+const breakpoints = createBreakpoints({
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+  xl: 1920
+});
 
+const theme = createTheme({
+  breakpoints: {
+    values: { ...breakpoints }
+  },
+  typography: {
+    body1: {
+      fontSize: 36,
+      fontWeight: "bolder",
+      color: "hotpink",
+      [breakpoints.down("sm")]: {
+        fontSize: 12,
+        fontWeight: 400,
+        color: "green"
+      }
+    }
+  },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        body2: {
+          fontSize: 36,
+          fontWeight: "bolder",
+          color: "red",
+          [breakpoints.down("sm")]: {
+            fontSize: 12,
+            fontWeight: 400,
+            color: "blue"
+          }
+        }
+      }
+    }
+  }
+});
 
-export default function BasicTable() {
-  const [data , setdata] = useState();
-  useEffect(() => {
-    axios.get('http://localhost:3002/products')
-    .then((res) => {
-        setdata(res.data)
-    })
-    .catch((err) => {
-        alert(err.response.statusText);
-    });
-  },[]);
-
+export default function Managementcommodity() {
   return (
-    <>
-    <Button variant="contained">Save</Button>
-    <p> price and Inventory Management </p>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Commodity</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Count</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data?.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              <TableCell align="right">{`${row.price}$`}</TableCell>
-              <TableCell align="right">{row.count}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </>
+    <ThemeProvider theme={theme}>
+      <Button variant="contained">Save</Button>
+      <p> price and Inventory Management </p> 
+      <div>
+        <Paginaion />
+      </div>
+    </ThemeProvider>
   );
 }
