@@ -2,8 +2,6 @@ import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
 import Paginaion from "./Pagination";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 
 const breakpoints = createBreakpoints({
   xs: 0,
@@ -50,10 +48,6 @@ const theme = createTheme({
 export default function Managementcommodity() {
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row">
-        <Button variant="contained">Add Commodity</Button>
-        Management commodity
-      </Stack>  
       <div>
         <Paginaion />
       </div>
