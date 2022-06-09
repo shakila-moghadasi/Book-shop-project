@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Radio from '@mui/material/Radio';
-import Waiting from '../Waitingcommodity';
+import Waiting from './Waitingcommodity';
 import Commodityposted from './Commodityposted';
 
 

@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
-import Paginaion from "./paginationWaiting";
+import Paginaion from "./PaginationPosted";
 
 const breakpoints = createBreakpoints({
   xs: 0,
@@ -45,7 +45,7 @@ const theme = createTheme({
   }
 });
 
-export default function Waitingcommodity() {
+export default function Commodityposted() {
   return (
     <ThemeProvider theme={theme}> 
       <div>

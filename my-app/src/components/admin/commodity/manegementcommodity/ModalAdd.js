@@ -4,6 +4,7 @@ import { api } from "./api";
 
 
 const ModalAdd = () => {
+  const [image , setimage] = useState(null);
   const [Title , setTitle] = useState(null);
   const [author , setauthor] = useState(null);
 
@@ -17,9 +18,13 @@ const ModalAdd = () => {
     fileReader.readAsDataURL(file);
   }
 
-  const changeHanler = async (e) => {
-    const image = Array.from(e.target.files);
-    preview(image[0]);
+  const changehandler = (e) => {
+    setimage(Array.from(e.target.files))
+    preview(image[0])
+  }
+
+  const submitHanler = async (e) => {
+    e.preventDefault()
     console.log(image);
     let temp = [];
     image.map((item) => {
@@ -30,7 +35,6 @@ const ModalAdd = () => {
     });
     const arrayResponse = await Promise.all(temp);
 
-    e.preventDefault()
     await api.post('/products', {
       Title: Title,
       author: author,
@@ -45,9 +49,9 @@ const ModalAdd = () => {
 
 
   return (
-    <form>
+    <form onSubmit={submitHanler}>
       <img alt={"test"} src="" ref={imgRef} height={88} />
-      <input type="file" onChange={changeHanler}/>
+      <input type="file" onChange={changehandler}/>
       <br/>
       <label>
         Title:

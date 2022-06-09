@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -20,7 +20,6 @@ import {
 import { useFetch } from "./hooks/Usefetch";
 import ModalEdit from "./ModalEdit";
 import ModalAdd from "./ModalAdd";
-import Upload from "./Upload";
 
 const style = {
   position: 'absolute',
@@ -35,6 +34,8 @@ const style = {
 };
 
 const Paginaion = () => {
+  const [id , setid] = useState(null);
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -43,10 +44,10 @@ const Paginaion = () => {
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
 
-  const limit = useMemo(() => 3, []);
+  const limit = useRef(3);
   const [activePage, setActivePage] = useState(1);
   const { data, loading, error } = useFetch(
-    `/products?_page=${activePage}&_limit=${limit}}`
+    `/products?_page=${activePage}&_limit=${limit.current}}`
   );
 
   if (error) {
@@ -127,20 +128,14 @@ const Paginaion = () => {
                     <TableCell>{record.author}</TableCell>
                     <TableCell>
                         <Button 
-                          onClick={handleOpen1}
+                          onClick={() => {
+                            setid(record.id)
+                            setOpen1(true)
+                            }
+                          }
                           >
                           Edit
                         </Button>
-                        <Modal
-                          open={open1}
-                          onClose={handleClose1}
-                          aria-labelledby="modal-modal-title"
-                          aria-describedby="modal-modal-description"
-                        >
-                          <Box sx={style}>
-                            <Upload/>
-                          </Box>
-                        </Modal>
                         <Button
                           onClick={(e) => {
                             e.target.parentNode.parentNode.parentNode.deleteRow(index)
@@ -160,6 +155,16 @@ const Paginaion = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal
+        open={open1}
+        onClose={handleClose1}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+      <Box sx={style}>
+        <ModalEdit id={id}/>
+      </Box>
+      </Modal>
       
       <Pagination
         variant="outlined"

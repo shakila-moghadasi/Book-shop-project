@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -15,10 +15,10 @@ import {
 import { useFetch } from "../commodity/manegementcommodity/hooks/Usefetch";
 
 const Paginaion = () => {
-  const limit = useMemo(() => 3, []);
+  const limit = useRef(4);
   const [activePage, setActivePage] = useState(1);
   const {data , loading , error } = useFetch(
-      `/orders?_page=${activePage}$_limit=${limit}}`
+      `/orders?orderStatus=2&_page=${activePage}&_limit=${limit.current}}`
   );
 
   if (error) {
