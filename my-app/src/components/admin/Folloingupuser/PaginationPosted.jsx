@@ -11,20 +11,15 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Button
 } from "@mui/material";
-import { EditText  } from "react-edit-text";
-import { api } from "../manegementcommodity/api";
-import { useFetch } from "../manegementcommodity/hooks/Usefetch";
-import axios from "axios";
+import { useFetch } from "../commodity/manegementcommodity/hooks/Usefetch";
+
 
 const Paginaion = () => {
-  const limit = useRef(6);
-  const [Price , setPrice] = useState(null);
-  const [Count , setCount] = useState(null);
+  const limit = useRef(4);
   const [activePage, setActivePage] = useState(1);
-  const { data, loading, error } = useFetch(
-    `/products?_page=${activePage}&_limit=${limit.current}}`
+  const {data , loading , error } = useFetch(
+      `/orders?orderStatus=1&_page=${activePage}&_limit=${limit.current}}`
   );
 
   if (error) {
@@ -34,10 +29,6 @@ const Paginaion = () => {
         <Typography variant="body2">ERROR - Typography Body2</Typography>
       </>
     );
-  }
-
-  const saveData = () => {
-
   }
 
   return (
@@ -50,8 +41,7 @@ const Paginaion = () => {
         marginInline: 2
       }}
     >
-      <TableContainer component={Paper} onSubmit={saveData}>
-        <Button variant="contained">Save</Button>
+      <TableContainer component={Paper}>
         <Table
           sx={{ minWidth: 650, minHeight: 150 }}
           size="small"
@@ -59,9 +49,9 @@ const Paginaion = () => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>commodity</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>count</TableCell>
+              <TableCell>user name</TableCell>
+              <TableCell>Total amount</TableCell>
+              <TableCell>Order registration time</TableCell>
             </TableRow>
           </TableHead>
           <TableBody sx={{ position: "relative" }}>
@@ -82,16 +72,10 @@ const Paginaion = () => {
             ) : (
               <>
                 {data.data.map((record) => (
-                  <TableRow key={record.title}>
-                    <TableCell>{record.title}</TableCell>
-                    <TableCell>
-                      <EditText
-                        defaultValue={`${record.price}$`} 
-                        // onChange={() => setPrice(defaultValue)}
-                      >
-                      </EditText>
-                    </TableCell>
-                    <TableCell><EditText defaultValue={record.count}></EditText></TableCell>
+                  <TableRow key={record.id}>
+                    <TableCell>{record.customerDetail.firstName}</TableCell>
+                    <TableCell>{`${record.amount}$`}</TableCell>
+                    <TableCell>{record.orderDate}</TableCell>
                   </TableRow>
                 ))}
               </>

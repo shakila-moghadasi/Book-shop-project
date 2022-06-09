@@ -49,7 +49,6 @@ const theme = createTheme({
 export default function Managementcommodity() {
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="contained">Save</Button>
       <p> price and Inventory Management </p> 
       <div>
         <Paginaion />
