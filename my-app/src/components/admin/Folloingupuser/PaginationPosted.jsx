@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -13,6 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useFetch } from "../commodity/manegementcommodity/hooks/Usefetch";
+import Link from '@mui/material/Link';
 
 
 const Paginaion = () => {
@@ -52,6 +53,7 @@ const Paginaion = () => {
               <TableCell>user name</TableCell>
               <TableCell>Total amount</TableCell>
               <TableCell>Order registration time</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody sx={{ position: "relative" }}>
@@ -76,6 +78,7 @@ const Paginaion = () => {
                     <TableCell>{record.customerDetail.firstName}</TableCell>
                     <TableCell>{`${record.amount}$`}</TableCell>
                     <TableCell>{record.orderDate}</TableCell>
+                    <TableCell><Link href="#">Check Orders</Link></TableCell>
                   </TableRow>
                 ))}
               </>
