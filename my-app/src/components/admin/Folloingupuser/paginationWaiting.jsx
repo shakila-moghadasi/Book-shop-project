@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Box,
   CircularProgress,
@@ -11,8 +11,22 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Modal
 } from "@mui/material";
 import { useFetch } from "../commodity/manegementcommodity/hooks/Usefetch";
+import Link from '@mui/material/Link';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const Paginaion = () => {
   const limit = useRef(4);
@@ -20,6 +34,10 @@ const Paginaion = () => {
   const {data , loading , error } = useFetch(
       `/orders?orderStatus=2&_page=${activePage}&_limit=${limit.current}}`
   );
+  const [id , setid] = useState(null);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   if (error) {
     return (
@@ -51,6 +69,7 @@ const Paginaion = () => {
               <TableCell>user name</TableCell>
               <TableCell>Total amount</TableCell>
               <TableCell>Order registration time</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody sx={{ position: "relative" }}>
@@ -75,6 +94,18 @@ const Paginaion = () => {
                     <TableCell>{record.customerDetail.firstName}</TableCell>
                     <TableCell>{`${record.amount}$`}</TableCell>
                     <TableCell>{record.orderDate}</TableCell>
+                    <TableCell>
+                      <Link                           
+                        onClick={() => {
+                          setid(record.id)
+                          setOpen(true)
+                          }
+                        }
+                      >
+                        Check Orders
+                      </Link>
+                    </TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
                 ))}
               </>
@@ -82,6 +113,16 @@ const Paginaion = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+      <Box sx={style}>
+        {/* < id={id}/> */}
+      </Box>
+      </Modal>
 
       <Pagination
         variant="outlined"

@@ -1,7 +1,6 @@
 import { Route , Routes } from 'react-router-dom';
 import './App.css';
 import Managementcommodity from './components/admin/commodity/manegementcommodity/Managementcommodity';
-import AxiosLogin from './components/admin/login/AxiosLogin';
 import Admin from './components/layout/Admin';
 import User from './components/layout/User';
 import Withoutheader from './components/layout/withoutheader';
@@ -10,16 +9,21 @@ import Commodityposted from './components/admin/Folloingupuser/Commodityposted';
 import Listshop from './components/user/listshop/Listshop';
 import Ordered from './components/admin/Folloingupuser/Ordered';
 import Waiting from './components/admin/Folloingupuser/Waitingcommodity';
+import Home from './components/user/Home';
+import Loginadmin from './components/admin/login/Loginadmin';
+import Category from './components/user/Category';
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<User/>}>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/category' element={<Category/>}/>
           <Route path="/listshop" element={<Listshop/>}/>
         </Route>
         <Route path='/' element={<Withoutheader/>}>
-          <Route path='/Loginadmin' element={<AxiosLogin/>}/>
+          <Route path='/Loginadmin' element={<Loginadmin/>}/>
         </Route>
         <Route path='/' element={<Admin/>}>
           <Route path='managecommodity' element={<Managementcommodity/>}/>

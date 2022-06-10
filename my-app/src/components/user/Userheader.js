@@ -14,7 +14,7 @@ import { Outlet , Link } from 'react-router-dom';
 
 
 
-const pages = ['سبد خرید', 'مدیریت'];
+const pages = ['shopping', 'Management'];
 const routes = [ '/listshop' , '/Loginadmin']
 
 const Userheader = () => {
@@ -37,6 +37,7 @@ const Userheader = () => {
   };
 
   return (
+    <>
     <div>
     <AppBar sx={{backgroundColor: '#B2E7E8'}}>
       <Container maxWidth="xl" position="static">
@@ -112,8 +113,9 @@ const Userheader = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    <Outlet/>
     </div>  
+    <Outlet/>
+    </>
   );
 };
 export default Userheader;
