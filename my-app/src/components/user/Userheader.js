@@ -15,7 +15,7 @@ import { Outlet , Link } from 'react-router-dom';
 
 
 const pages = ['shopping', 'Management'];
-const routes = [ '/listshop' , '/Loginadmin']
+const routes = [ '/shop' , '/Loginadmin']
 
 const Userheader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

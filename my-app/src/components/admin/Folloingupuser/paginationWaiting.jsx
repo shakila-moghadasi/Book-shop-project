@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useFetch } from "../commodity/manegementcommodity/hooks/Usefetch";
 import Link from '@mui/material/Link';
+import ModalWaitingOrders from "./ModalWaitingOrders";
 
 const style = {
   position: 'absolute',
@@ -120,7 +121,7 @@ const Paginaion = () => {
         aria-describedby="modal-modal-description"
       >
       <Box sx={style}>
-        {/* < id={id}/> */}
+        <ModalWaitingOrders id={id}/>
       </Box>
       </Modal>
 

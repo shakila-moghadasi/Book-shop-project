@@ -16,12 +16,12 @@ import {
 import { EditText  } from "react-edit-text";
 import { api } from "../manegementcommodity/api";
 import { useFetch } from "../manegementcommodity/hooks/Usefetch";
-import axios from "axios";
 
 const Paginaion = () => {
   const limit = useRef(6);
   const [Price , setPrice] = useState(null);
   const [Count , setCount] = useState(null);
+  const [id , setid] = useState(null)
   const [activePage, setActivePage] = useState(1);
   const { data, loading, error } = useFetch(
     `/products?_page=${activePage}&_limit=${limit.current}}`
@@ -36,8 +36,13 @@ const Paginaion = () => {
     );
   }
 
-  const saveData = () => {
+  const submitPrice = async (e) => {
+    e.preventDefault()
 
+    await api.put(`/products/${id}`, {
+      price: Price,
+      createdAt: new Date(),
+    });
   }
 
   return (
@@ -50,7 +55,7 @@ const Paginaion = () => {
         marginInline: 2
       }}
     >
-      <TableContainer component={Paper} onSubmit={saveData}>
+      <TableContainer component={Paper}>
         <Button variant="contained">Save</Button>
         <Table
           sx={{ minWidth: 650, minHeight: 150 }}
@@ -87,7 +92,11 @@ const Paginaion = () => {
                     <TableCell>
                       <EditText
                         defaultValue={`${record.price}$`} 
-                        // onChange={() => setPrice(defaultValue)}
+                        onChange={(e) => {
+                          setPrice(e.target.value)
+                          setid(record.id)
+                        }}
+                        onSubmit={submitPrice}
                       >
                       </EditText>
                     </TableCell>
