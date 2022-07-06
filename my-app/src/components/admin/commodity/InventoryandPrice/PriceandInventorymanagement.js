@@ -2,7 +2,6 @@ import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
 import Paginaion from "./Pagination";
-import Button from '@mui/material/Button';
 
 const breakpoints = createBreakpoints({
   xs: 0,

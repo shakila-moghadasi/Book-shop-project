@@ -19,7 +19,8 @@ const ModalEdit = (props) => {
 
   const changehandler = (e) => {
     setimage(Array.from(e.target.files))
-    preview(image[0])
+    const files = Array.from(e.target.files);
+    preview(files[0])
   }
 
   const submitHanler = async (e) => {
@@ -35,7 +36,7 @@ const ModalEdit = (props) => {
     const arrayResponse = await Promise.all(temp);
 
     await api.put(`/products/${props.id}`, {
-      Title: Title,
+      title: Title,
       author: author,
       image: arrayResponse.map((i) => i.data.filename),
       createdAt: new Date(),

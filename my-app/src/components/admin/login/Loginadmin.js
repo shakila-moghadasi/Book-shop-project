@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from "react-dom";
 import axios from 'axios';
 import {
   Grid,
   TextField,
-  Paper,
   Button
 } from '@mui/material';
-import { Link, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Loginadmin = () => {
   const [errorMessages, setErrorMessages] = useState({});
@@ -16,6 +14,7 @@ const Loginadmin = () => {
     email:"",
     password:"",
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:3002/users')
@@ -91,12 +90,9 @@ const Loginadmin = () => {
   );
   return (
     <div>
-      {isSubmitted ? Navigate('http://localhost:3000/managecommodity') : renderForm}
+      {isSubmitted ? navigate('/managecommodity') : renderForm}
     </div>
   );
 };
 
 export default Loginadmin;
-
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Loginadmin />, rootElement);
