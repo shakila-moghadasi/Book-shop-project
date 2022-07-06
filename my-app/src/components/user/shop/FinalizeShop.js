@@ -22,7 +22,7 @@ const Form = () => {
     console.log(formValues);
     await api.post('http://localhost:3002/orders', {
       data: formValues,
-      amount : Price,
+      amount : Price.state.name,
       createdAt: new Date(),
       isDelivered: false,
     });
