@@ -20,7 +20,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formValues);
-    await api.put('http://localhost:3002/orders', {
+    await api.post('http://localhost:3002/orders', {
       data: formValues,
       amount : Price,
       createdAt: new Date(),
